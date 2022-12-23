@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link, useParams, useNavigate } from 'react-router-dom'
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Link,
+	useParams,
+	useNavigate,
+} from 'react-router-dom'
 
 const Menu = () => {
 	const padding = {
@@ -36,12 +43,12 @@ const AnecdoteList = ({ anecdotes }) => (
 )
 
 const Anecdote = ({ anecdotes }) => {
-  const id = useParams().id
-  const anecdote = anecdotes.find(a => a.id === Number(id))
+	const id = useParams().id
+	const anecdote = anecdotes.find((a) => a.id === Number(id))
 	return (
 		<div>
 			<h2>{anecdote.content}</h2>
-      <p>has {anecdote.votes} votes</p>
+			<p>has {anecdote.votes} votes</p>
 		</div>
 	)
 }
@@ -73,8 +80,8 @@ const Footer = () => (
 	<div>
 		Anecdote app for{' '}
 		<a href="https://fullstackopen.com/">Full Stack Open</a>. See{' '}
-		<a href="https://github.com/fullstack-hy2020/routed-anecdotes/blob/master/src/App.js">
-			https://github.com/fullstack-hy2020/routed-anecdotes/blob/master/src/App.js
+		<a href="https://github.com/Cactus322/routed-anecdotes-7-part">
+			https://github.com/Cactus322/routed-anecdotes-7-part
 		</a>{' '}
 		for the source code.
 	</div>
@@ -84,7 +91,7 @@ const CreateNew = (props) => {
 	const [content, setContent] = useState('')
 	const [author, setAuthor] = useState('')
 	const [info, setInfo] = useState('')
-  const navigate = useNavigate()
+	const navigate = useNavigate()
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -94,9 +101,9 @@ const CreateNew = (props) => {
 			info,
 			votes: 0,
 		})
-    navigate('/anecdotes')
-    props.setNotification('created new anecdote')
-    setTimeout(() => props.setNotification(''), 5000)
+		navigate('/anecdotes')
+		props.setNotification('created new anecdote')
+		setTimeout(() => props.setNotification(''), 5000)
 	}
 
 	return (
@@ -176,7 +183,7 @@ const App = () => {
 			<div>
 				<h1>Software anecdotes</h1>
 				<Menu />
-        <p>{notification}</p>
+				<p>{notification}</p>
 				<Routes>
 					<Route
 						path="/anecdotes"
@@ -188,7 +195,12 @@ const App = () => {
 					/>
 					<Route
 						path="/create-new"
-						element={<CreateNew addNew={addNew} setNotification={setNotification} />}
+						element={
+							<CreateNew
+								addNew={addNew}
+								setNotification={setNotification}
+							/>
+						}
 					/>
 					<Route path="/about" element={<About />} />
 				</Routes>
